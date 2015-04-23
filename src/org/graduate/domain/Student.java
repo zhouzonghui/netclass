@@ -26,7 +26,7 @@ public class Student {
 	/**
 	 * 学生性别，f表示女，m表示男
 	 */
-	private char gender;
+	private String gender;
 	
 	/**
 	 * 学生的考试分数
@@ -73,10 +73,10 @@ public class Student {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public float getScore() {

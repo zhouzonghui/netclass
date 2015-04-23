@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `t_class`;
 CREATE TABLE `t_class` (
   `c_id` int(2) NOT NULL AUTO_INCREMENT,
   `c_name` varchar(20) NOT NULL,
-  `t_time` int(2) NOT NULL,
+  `c_time` int(2) NOT NULL,
   PRIMARY KEY (`c_id`),
   KEY `c_id` (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +75,8 @@ CREATE TABLE `t_question` (
   `q_title` varchar(30) NOT NULL,
   `q_content` varchar(2047) NOT NULL,
   `q_student_id` varchar(20) NOT NULL,
+  `q_answer` varchar(2047) DEFAULT '',
+  `q_isanswered` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`q_id`),
   KEY `fk2` (`q_student_id`),
   CONSTRAINT `fk2` FOREIGN KEY (`q_student_id`) REFERENCES `t_student` (`s_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -100,7 +102,7 @@ DROP TABLE IF EXISTS `t_student`;
 CREATE TABLE `t_student` (
   `s_id` varchar(20) NOT NULL,
   `s_name` varchar(20) NOT NULL,
-  `s_password` varchar(40) NOT NULL,
+  `s_password` varchar(40) NOT NULL DEFAULT '827ccb0eea8a706c4c34a16891f84e7b',
   `s_gender` varchar(1) NOT NULL,
   `s_score` float(4,1) DEFAULT '0.0',
   `s_class_id` int(2) NOT NULL,
@@ -128,4 +130,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-23 10:35:41
+-- Dump completed on 2015-04-23 15:51:50

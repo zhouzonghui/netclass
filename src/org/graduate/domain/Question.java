@@ -19,6 +19,39 @@ public class Question {
 	 */
 	private String content;
 	
+	/**
+	 * 问题的回复内容
+	 */
+	private String answer;
+	
+	/**
+	 * 问题是否被回复
+	 */
+	private boolean isanswer;
+	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	public boolean isIsanswer() {
+		return isanswer;
+	}
+	public void setIsanswer(boolean isanswer) {
+		this.isanswer = isanswer;
+	}
+	/**
+	 * 由question导航到student，即这个question是哪个student提出的
+	 */
+	private Student student;
+	
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 	public int getId() {
 		return id;
 	}
