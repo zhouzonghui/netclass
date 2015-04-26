@@ -7,7 +7,8 @@
     <title>教学互动系统后台管理</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="expires" content="0">
+	<link rel="shortcut icon" href="/netclass/images/favicon.ico" type="image/x-icon" />
 	<meta http-equiv="description" content="教学互动系统后台管理主页面">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
