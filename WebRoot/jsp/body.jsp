@@ -9,6 +9,7 @@
   </head>
   
   <body>
-    body....
+  	<!-- 默认显示教务处首页 -->
+    <iframe src="http://59.67.225.73/jiaowuchu/" width="1091px" height="500px"></iframe>
   </body>
 </html>

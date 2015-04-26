@@ -22,11 +22,18 @@
 			});
 			
 			
-			$("#close").click(function() {
-  				$("#x").hide("fast");
-			});
+			
 			$("#cs").click(function() {
-				$("#x").show("fast");
+			
+				if ($("#c_content").css("display") == "none") {
+					var result = confirm("确定要打开课堂与学生面版吗？");
+					if (result) {
+						$("#c_content").show("fast");
+					}
+				}else {
+					$("#c_content").hide("fast");
+				}
+				
 			});
 			
 		});
@@ -36,17 +43,11 @@
 		.content {
 			margin-left: 30px;
 		}
-		#x {
-			width: 246px;
-			height: 190px;
+		#c_content {
+			margin-left: 30px;
 			display: none;
-			background-color: green;
 		}
-		#close {
-			width: 20px ;
-			height: 17px ;
-			cursor: pointer;
-		}
+		
 	</style>
   </head>
   
@@ -76,13 +77,17 @@
 		    <a href="">查看留言</a><br/>
 		    <a href="">留言回复</a>
 	    </div>
+	    <br/>
+	    <div id="cs"><li><a href="#">课堂与学生管理</a></li></div>
+	    <div id="c_content">
+		    <a href="${pageContext.request.contextPath }/jsp/addclass.jsp" target="body">添加课堂</a><br/>
+		    <a href="">删除课堂</a><br/>
+		    <a href="">为课堂添加学生</a>
+	    </div>
     </ul>
-    <input type="button" value="课堂与学生管理" id="cs" style="width: 200px; height: 40px; margin-left: 27px;"/>
     
-    <div id="x">
-    	<img alt="关闭面板" src="/netclass/images/close.png" id="close">
-    	课堂与学生管理
-    </div>
+    
+    
     
   </body>
 </html>
