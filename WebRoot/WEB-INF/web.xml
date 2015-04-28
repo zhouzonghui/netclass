@@ -23,6 +23,21 @@
     <servlet-name>AddClass</servlet-name>
     <servlet-class>org.graduate.web.controller.AddClass</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DeleteClassUI</servlet-name>
+    <servlet-class>org.graduate.web.controller.DeleteClassUI</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteClass</servlet-name>
+    <servlet-class>org.graduate.web.controller.DeleteClass</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ScoreMrgUI</servlet-name>
+    <servlet-class>org.graduate.web.controller.ScoreMrgUI</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -37,6 +52,18 @@
   <servlet-mapping>
     <servlet-name>AddClass</servlet-name>
     <url-pattern>/servlet/AddClass</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteClassUI</servlet-name>
+    <url-pattern>/servlet/DeleteClassUI</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteClass</servlet-name>
+    <url-pattern>/servlet/DeleteClass</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ScoreMrgUI</servlet-name>
+    <url-pattern>/servlet/ScoreMrgUI</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     

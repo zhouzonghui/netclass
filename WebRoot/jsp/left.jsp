@@ -1,4 +1,7 @@
+<%@page import="org.graduate.domain.Class"%>
+<%@page import="org.graduate.dao.ClassDao"%>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -52,6 +55,12 @@
   </head>
   
   <body>
+  	<%--按照MVC，jsp不应出现java代码，但根据实际情况，这里是最方便的 --%>
+  	<%
+  		ClassDao classDao = new ClassDao();
+  		List<Class> list = classDao.findAll();
+  		pageContext.setAttribute("list", list);
+  	 %>
   	<ul>
 	    <div id="notice"><li><a href="#">通知管理</a></li></div>
 	    <div id="n_content" class="content">
@@ -74,20 +83,19 @@
 	    <!-- 待处理 -->
 	    <div id="score"><li><a href="#">成绩管理</a></li></div>
 	    <div id="s_content" class="content">
-		    <a href="">查看留言</a><br/>
-		    <a href="">留言回复</a>
+		    <c:forEach var="c" items="${list}">
+		    	<a href="${pageContext.request.contextPath }/servlet/ScoreMrgUI?id=${c.id}" target="body">${c.name}</a><br/>
+		    </c:forEach>
+		    
 	    </div>
 	    <br/>
 	    <div id="cs"><li><a href="#">课堂与学生管理</a></li></div>
 	    <div id="c_content">
 		    <a href="${pageContext.request.contextPath }/jsp/addclass.jsp" target="body">添加课堂</a><br/>
-		    <a href="">删除课堂</a><br/>
+		    <a href="${pageContext.request.contextPath }/servlet/DeleteClassUI" target="body">删除课堂</a><br/>
 		    <a href="">为课堂添加学生</a>
 	    </div>
     </ul>
-    
-    
-    
     
   </body>
 </html>

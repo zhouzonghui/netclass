@@ -17,7 +17,13 @@
 				var time = $("#ti").val();
 				
 				if (name.trim() == "" || time.trim() == "") {
-					alert("请填写完整！");
+					alert("不能为空，请填写完整！");
+					return false;
+				}
+				//每门课一周最少一节，最多三节
+				var reg = /^([1-5][1-5]){1,3}$/;
+				if(!reg.test(time)) {
+					alert("上课时间格式错误！");
 					return false;
 				}
 				return true;

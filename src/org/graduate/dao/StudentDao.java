@@ -115,7 +115,8 @@ public class StudentDao {
 			while (rs.next()) {
 				String id = rs.getString("s_id");
 				String name = rs.getString("s_name");
-				String gender = rs.getString("s_gender");
+				String g = rs.getString("s_gender");
+				String gender = g.equals("f") ? "Å®" : "ÄÐ";
 				float score = rs.getFloat("s_score");
 				
 				Student student = new Student();

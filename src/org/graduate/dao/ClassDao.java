@@ -96,6 +96,46 @@ public class ClassDao {
 		}
 		
 	}
+	
+	/**
+	 * 根据id查询出一个课堂
+	 * @param id
+	 * @return 返回class
+	 */
+	public Class find(int id) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "select * from t_class where c_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				int c_id = rs.getInt("c_id");
+				String c_name = rs.getString("c_name");
+				int c_time = rs.getInt("c_time");
+				
+				Class clazz = new Class();
+				clazz.setId(c_id);
+				clazz.setName(c_name);
+				clazz.setTime(c_time);
+				return clazz;
+			}
+			return null;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+		
+	}
 }
 
 
