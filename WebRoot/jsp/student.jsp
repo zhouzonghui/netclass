@@ -30,20 +30,13 @@
  				
  			});
  			
- 			$("#sub").click(function(){
- 				$("input").each(function(){
-    				var id = $(this).attr("id");alert(id);
-    				var value = $(this).val();
-    				var tmp = id + "-" + value + ",";
-    				$("#tx").val($("#tx").val() + tmp);
-				});
-				
-				var str = $("#tx").val();
- 				str = str.substring(0,str.length-1);
- 				$("#tx").val(str);
- 				//alert(str);
- 				return false;
+ 			//文本框内容改变的时候把内容赋值给隐藏表单域
+ 			$(".score").change(function(){
+ 				$(this).parent().find(".hdn").val($(this).val());
+ 				
  			});
+ 			
+ 			
 		});
 	</script>
 	<style type="text/css">
@@ -64,7 +57,7 @@
   </head>
   
   <body>
-  	
+  	<!-- 这个表单提交弄了一天。。。 -->
     <font size="5">课堂：${clazz.name } 　　　上课时间：${clazz.time}</font><br/><br/>
     <table frame="border" bordercolor="green" rules="all" width="500px" align="center">
     	<tr>
@@ -73,17 +66,19 @@
     		<td>性别</td>
     		<td>分数</td>
     	</tr>
-    	<form>
-	    <c:forEach var="s" items="${list}">
-	    	<tr>
-	    		<td>${s.id }</td>
-	    		<td>${s.name }</td>
-	    		<td>${s.gender }</td>
-	    		<td><div><input type="text" id="${s.id }" value="${s.score }" class="score"/><span></span></div></td>
-	    	</tr>
-	    </c:forEach>
-	    <textarea rows="0" cols="0"></textarea>
-	    <input type="submit" id="sub" value="提交"/>
+    	<form action="${pageContext.request.contextPath }/servlet/UpdateScore" method="post">
+		    <c:forEach var="s" items="${list}">
+		    	<tr>
+		    		<td>${s.id }</td>
+		    		<td>${s.name }</td>
+		    		<td>${s.gender }</td>
+		    		<td><div><input type="text" id="${s.id }" value="${s.score }" class="score"/><input type="hidden" class="hdn" name="score" value=""/><span></span></div></td>
+		    		<input type="hidden" name="id" value="${s.id}"/>
+		    		
+		    	</tr>
+		    </c:forEach>
+	    
+	    <input type="submit" value="提交"/>
 	    </form>
     </table>
   </body>

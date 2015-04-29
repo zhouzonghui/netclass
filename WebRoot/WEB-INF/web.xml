@@ -35,6 +35,11 @@
     <servlet-name>ScoreMrgUI</servlet-name>
     <servlet-class>org.graduate.web.controller.ScoreMrgUI</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UpdateScore</servlet-name>
+    <servlet-class>org.graduate.web.controller.UpdateScore</servlet-class>
+  </servlet>
+
 
 
 
@@ -64,6 +69,10 @@
   <servlet-mapping>
     <servlet-name>ScoreMrgUI</servlet-name>
     <url-pattern>/servlet/ScoreMrgUI</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateScore</servlet-name>
+    <url-pattern>/servlet/UpdateScore</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     
