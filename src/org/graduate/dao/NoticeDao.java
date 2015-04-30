@@ -61,10 +61,12 @@ public class NoticeDao {
 	}
 	
 	/**
-	 * 从最新发布的通知往前，一共查询出6条（固定6条通知数量）
-	 * @return 返回6条最新的通知，如果有六条的话
+	 * 从m开始取，一共查询出n条，注意是倒序的，即从新的往老的（android客户端可以返回固定6条通知数量）
+	 * @param m 从哪个位置取
+	 * @param n 取多少条
+	 * @return 返回n条最新的通知，如果有n条的话
 	 */
-	public List<Notice> findSomeNotices() {
+	public List<Notice> findSomeNotices(int m, int n) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -72,8 +74,10 @@ public class NoticeDao {
 		List<Notice> list = new ArrayList<Notice>();
 		try {
 			conn = JdbcUtils.getConnection();
-			String sql = "select * from t_notice order by n_id desc limit 0,6";
+			String sql = "select * from t_notice order by n_id desc limit ?,?";
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, m);
+			ps.setInt(2, n);
 			
 			rs = ps.executeQuery();
 			
@@ -95,6 +99,41 @@ public class NoticeDao {
 			JdbcUtils.release(conn, ps, rs);
 		}
 		
+	}
+	
+	/**
+	 * 列出所有通知
+	 * @return 返回所有通知的集合
+	 */
+	public List<Notice> findAll() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<Notice> list = new ArrayList<Notice>();
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "select * from t_notice order by n_id desc";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int id = rs.getInt("n_id");
+				String info = rs.getString("n_info");
+				
+				Notice notice = new Notice();
+				notice.setId(id);
+				notice.setInfo(info);
+				
+				list.add(notice);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
 	}
 		
 }

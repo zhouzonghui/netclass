@@ -138,6 +138,42 @@ public class StudentDao {
 		}
 		
 	}
+	
+	/**
+	 * 批处理，更新某个课堂的学生的成绩
+	 * @param ids 学号
+	 * @param scores 分数
+	 */
+	public void updateBatch(String[] ids, double[] scores) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "update t_student set s_score=? where s_id=?";
+			ps = conn.prepareStatement(sql);
+			
+			if (ids.length == scores.length) {
+				for (int i = 0; i < scores.length; i++) {
+					ps.setDouble(1, scores[i]);
+					ps.setString(2, ids[i]);
+					
+					ps.addBatch();
+				}
+				ps.executeBatch();
+			}else {
+				throw new RuntimeException("更新出错！");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+	}
 }
 
 

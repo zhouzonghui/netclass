@@ -6,9 +6,10 @@
     
     <title>student</title>
   	<script type="text/javascript" src="/netclass/js/jquery-1.11.2.js"></script>
-	<meta http-equiv="expires" content="0">   
+	<meta http-equiv="expires" content="0">
 	<script type="text/javascript">
 		$(document).ready(function(){
+			//表格隔行变色
 			$("tr:even").addClass("even");
  			$("tr:odd").addClass("odd");
  			
@@ -33,7 +34,6 @@
  			//文本框内容改变的时候把内容赋值给隐藏表单域
  			$(".score").change(function(){
  				$(this).parent().find(".hdn").val($(this).val());
- 				
  			});
  			
  			
@@ -66,19 +66,19 @@
     		<td>性别</td>
     		<td>分数</td>
     	</tr>
-    	<form action="${pageContext.request.contextPath }/servlet/UpdateScore" method="post">
+    	<form action="${pageContext.request.contextPath }/servlet/UpdateScore" method="post" onsubmit="return confirm('确认提交？');">
 		    <c:forEach var="s" items="${list}">
 		    	<tr>
 		    		<td>${s.id }</td>
 		    		<td>${s.name }</td>
 		    		<td>${s.gender }</td>
-		    		<td><div><input type="text" id="${s.id }" value="${s.score }" class="score"/><input type="hidden" class="hdn" name="score" value=""/><span></span></div></td>
+		    		<td><div><input type="text" id="${s.id }" value="${s.score }" class="score"/><input type="hidden" class="hdn" name="score" value="${s.score }"/><span></span></div></td>
 		    		<input type="hidden" name="id" value="${s.id}"/>
 		    		
 		    	</tr>
 		    </c:forEach>
 	    
-	    <input type="submit" value="提交"/>
+	    	<input type="submit" value="提交"/>
 	    </form>
     </table>
   </body>

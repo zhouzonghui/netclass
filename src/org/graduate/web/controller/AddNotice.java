@@ -7,37 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.graduate.dao.StudentDao;
+import org.graduate.dao.NoticeDao;
+import org.graduate.domain.Notice;
 
 @SuppressWarnings("serial")
-public class UpdateScore extends HttpServlet {
+public class AddNotice extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		StudentDao studentDao = new StudentDao();
+		NoticeDao noticeDao = new NoticeDao();
 		
-		String[] ids = request.getParameterValues("id");
-		String[] scores = request.getParameterValues("score");
-		double[] real_scores = null;
-		
-		try {
-			
-			if (ids.length == scores.length) {
-				real_scores = new double[ids.length];
-				for (int i = 0; i < scores.length; i++) {
-					real_scores[i] = Double.parseDouble(scores[i]);
-				}
-			}
-			
-			studentDao.updateBatch(ids, real_scores);
-			request.setAttribute("msg", "成绩更新成功！");
+		if (request.getSession().getAttribute("username") != null) {
+			String content = request.getParameter("content");
+			Notice notice = new Notice();
+			notice.setInfo(content);
+			noticeDao.add(notice);
+			request.setAttribute("msg", "发布成功！");
 			request.getRequestDispatcher("/jsp/message.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("msg", "成绩更新失败！");
+		}else {
+			request.setAttribute("msg", "您尚未登录，请先<a href='/netclass/login.jsp' target='_parent'>登录</a>");
 			request.getRequestDispatcher("/jsp/message.jsp").forward(request, response);
 		}
-		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

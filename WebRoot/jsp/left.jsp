@@ -57,6 +57,7 @@
   <body>
   	<%--按照MVC，jsp不应出现java代码，但根据实际情况，这里是最方便的 --%>
   	<%
+  		//从数据库取出所有课堂，放到page域
   		ClassDao classDao = new ClassDao();
   		List<Class> list = classDao.findAll();
   		pageContext.setAttribute("list", list);
@@ -64,14 +65,14 @@
   	<ul>
 	    <div id="notice"><li><a href="#">通知管理</a></li></div>
 	    <div id="n_content" class="content">
-		    <a href="">查看通知</a><br/>
-		    <a href="">发布通知</a>
+		    <a href="${pageContext.request.contextPath }/servlet/ListNotice" target="body">查看通知</a><br/>
+		    <a href="${pageContext.request.contextPath }/jsp/publishnotice.jsp" target="body">发布通知</a>
 	    </div>
 	    <br/>
 	    <div id="resource"><li><a href="#">资源管理</a></li></div>
 	    <div id="r_content" class="content">
 		    <a href="">查看资源</a><br/>
-		    <a href="">上传资源</a>
+		    <a href="${pageContext.request.contextPath }/jsp/upload.jsp">上传资源</a>
 	    </div>
 	    <br/>
 	    <div id="message"><li><a href="#">留言管理</a></li></div>

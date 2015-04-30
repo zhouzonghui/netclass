@@ -39,6 +39,21 @@
     <servlet-name>UpdateScore</servlet-name>
     <servlet-class>org.graduate.web.controller.UpdateScore</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddNotice</servlet-name>
+    <servlet-class>org.graduate.web.controller.AddNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListNotice</servlet-name>
+    <servlet-class>org.graduate.web.controller.ListNotice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteNotice</servlet-name>
+    <servlet-class>org.graduate.web.controller.DeleteNotice</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -73,6 +88,18 @@
   <servlet-mapping>
     <servlet-name>UpdateScore</servlet-name>
     <url-pattern>/servlet/UpdateScore</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNotice</servlet-name>
+    <url-pattern>/servlet/AddNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListNotice</servlet-name>
+    <url-pattern>/servlet/ListNotice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteNotice</servlet-name>
+    <url-pattern>/servlet/DeleteNotice</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     
