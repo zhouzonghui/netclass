@@ -57,6 +57,20 @@
     <servlet-name>UploadFile</servlet-name>
     <servlet-class>org.graduate.web.controller.UploadFile</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ListFile</servlet-name>
+    <servlet-class>org.graduate.web.controller.ListFile</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteFile</servlet-name>
+    <servlet-class>org.graduate.web.controller.DeleteFile</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -111,6 +125,14 @@
   <servlet-mapping>
     <servlet-name>UploadFile</servlet-name>
     <url-pattern>/servlet/UploadFile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListFile</servlet-name>
+    <url-pattern>/servlet/ListFile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteFile</servlet-name>
+    <url-pattern>/servlet/DeleteFile</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     

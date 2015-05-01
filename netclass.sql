@@ -49,8 +49,8 @@ DROP TABLE IF EXISTS `t_file`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `t_file` (
   `f_id` int(11) NOT NULL AUTO_INCREMENT,
-  `f_name` varchar(50) NOT NULL,
-  `f_url` varchar(200) NOT NULL,
+  `f_name` varchar(100) NOT NULL,
+  `f_url` varchar(500) NOT NULL,
   `f_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`f_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

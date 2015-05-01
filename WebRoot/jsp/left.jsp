@@ -71,7 +71,7 @@
 	    <br/>
 	    <div id="resource"><li><a href="#">资源管理</a></li></div>
 	    <div id="r_content" class="content">
-		    <a href="">查看资源</a><br/>
+		    <a href="${pageContext.request.contextPath }/servlet/ListFile" target="body">查看资源</a><br/>
 		    <a href="${pageContext.request.contextPath }/jsp/upload.jsp" target="body">上传资源</a>
 	    </div>
 	    <br/>
