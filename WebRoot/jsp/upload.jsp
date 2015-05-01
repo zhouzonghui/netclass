@@ -10,8 +10,8 @@
   </head>
   
   <body>
-    <form action="" method="post" enctype="multipart/form-data">
-    	<input type="file" name="myfile"/><br/>
+    <form action="${pageContext.request.contextPath }/servlet/UploadFile" method="post" enctype="multipart/form-data">
+    	<input type="file" name="myfile"/><br/><br/>
     	<input type="submit" value="上传"/>
     
     </form>

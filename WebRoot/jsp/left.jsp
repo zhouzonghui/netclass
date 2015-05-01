@@ -72,7 +72,7 @@
 	    <div id="resource"><li><a href="#">资源管理</a></li></div>
 	    <div id="r_content" class="content">
 		    <a href="">查看资源</a><br/>
-		    <a href="${pageContext.request.contextPath }/jsp/upload.jsp">上传资源</a>
+		    <a href="${pageContext.request.contextPath }/jsp/upload.jsp" target="body">上传资源</a>
 	    </div>
 	    <br/>
 	    <div id="message"><li><a href="#">留言管理</a></li></div>

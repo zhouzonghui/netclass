@@ -28,7 +28,7 @@ CREATE TABLE `t_class` (
   `c_time` int(2) NOT NULL,
   PRIMARY KEY (`c_id`),
   KEY `c_id` (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,31 @@ CREATE TABLE `t_class` (
 LOCK TABLES `t_class` WRITE;
 /*!40000 ALTER TABLE `t_class` DISABLE KEYS */;
 /*!40000 ALTER TABLE `t_class` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_file`
+--
+
+DROP TABLE IF EXISTS `t_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_file` (
+  `f_id` int(11) NOT NULL AUTO_INCREMENT,
+  `f_name` varchar(50) NOT NULL,
+  `f_url` varchar(200) NOT NULL,
+  `f_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`f_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_file`
+--
+
+LOCK TABLES `t_file` WRITE;
+/*!40000 ALTER TABLE `t_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `t_file` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -130,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-23 15:51:50
+-- Dump completed on 2015-04-28  9:03:43
