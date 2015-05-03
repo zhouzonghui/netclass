@@ -19,7 +19,7 @@
 			$("#message").click(function() {
 				$("#m_content").toggle("fast");
 			});
-			//待处理
+			
 			$("#score").click(function() {
 				$("#s_content").toggle("fast");
 			});
@@ -81,7 +81,7 @@
 		    <a href="">留言回复</a>
 	    </div>
 	    <br/>
-	    <!-- 待处理 -->
+	    
 	    <div id="score"><li><a href="#">成绩管理</a></li></div>
 	    <div id="s_content" class="content">
 		    <c:forEach var="c" items="${list}">
@@ -94,7 +94,9 @@
 	    <div id="c_content">
 		    <a href="${pageContext.request.contextPath }/jsp/addclass.jsp" target="body">添加课堂</a><br/>
 		    <a href="${pageContext.request.contextPath }/servlet/DeleteClassUI" target="body">删除课堂</a><br/>
-		    <a href="">为课堂添加学生</a>
+		    <c:forEach var="c" items="${list}">
+		    	<a href="${pageContext.request.contextPath }/jsp/addstudent.jsp?id=${c.id}&name=${c.name}" target="body">为<font color="red">${c.name }</font>课堂添加学生</a><br/>
+		    </c:forEach>
 	    </div>
     </ul>
     

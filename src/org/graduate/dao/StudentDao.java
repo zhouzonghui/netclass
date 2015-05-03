@@ -174,6 +174,49 @@ public class StudentDao {
 			JdbcUtils.release(conn, ps, rs);
 		}
 	}
+	
+	/**
+	 * 批量初始化某个课堂上的学生
+	 * @param id 课堂id
+	 * @param students 代表学生信息的数组，格式：{"201109020229-张三-男", "201109020212-李四-男", "201109020210-王武-男"}
+	 */
+	public void addStudentOfClass(int id, String[] students) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "insert into t_student (s_id,s_name,s_gender,s_class_id) values (?,?,?,?)";
+			ps = conn.prepareStatement(sql);
+			
+			if (students != null && students.length > 0) {
+				for (int i = 0; i < students.length; i++) {
+					ps.setString(1, students[i].split("\\-")[0]);
+					ps.setString(2, students[i].split("\\-")[1]);
+					ps.setString(3, (students[i].split("\\-")[2]).equals("男") ? "m" : "f");
+					ps.setInt(4, id);
+					
+					ps.addBatch();
+				}
+				ps.executeBatch();
+			}else {
+				throw new RuntimeException("添加失败！");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+		
+		
+		
+		
+		
+	}
 }
 
 

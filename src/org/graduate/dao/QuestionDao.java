@@ -39,7 +39,7 @@ public class QuestionDao {
 	}
 	
 	/**
-	 * 分页取数据，去的是所有学生的问题，而不是某一特定学生的问题
+	 * 分页取数据，取的是所有学生的问题，而不是某一特定学生的问题
 	 * @param start 开始位置
 	 * @param offset 需要取的记录条数
 	 * @return 返回这一页数据的集合

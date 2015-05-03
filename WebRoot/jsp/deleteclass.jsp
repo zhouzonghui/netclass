@@ -31,7 +31,7 @@
     				<td>${c.name }</td>
     				<td>${c.time }</td>
     				<%-- <td><input type="checkbox" value="${c.id }" id="">删除</td> --%>
-    				<td><a href="${pageContext.request.contextPath }/servlet/DeleteClass?id=${c.id}" target="body" onclick="return confirm('确定删除？');">删除</a></td>
+    				<td><a href="${pageContext.request.contextPath }/servlet/DeleteClass?id=${c.id}" target="body" onclick="return confirm('删除课堂的同时该课堂的学生信息也将被删除，确定删除？');">删除</a></td>
     			</tr>
     		</c:forEach>
     	</table>
