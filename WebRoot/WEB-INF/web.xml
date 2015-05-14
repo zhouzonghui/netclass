@@ -75,6 +75,11 @@
     <servlet-name>AddStudent</servlet-name>
     <servlet-class>org.graduate.web.controller.AddStudent</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>StudentService</servlet-name>
+    <servlet-class>org.graduate.web.controller.StudentService</servlet-class>
+  </servlet>
+
 
 
 
@@ -144,6 +149,10 @@
   <servlet-mapping>
     <servlet-name>AddStudent</servlet-name>
     <url-pattern>/servlet/AddStudent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StudentService</servlet-name>
+    <url-pattern>/servlet/StudentService</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     

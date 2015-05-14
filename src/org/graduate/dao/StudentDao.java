@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.graduate.domain.Student;
 import org.graduate.utils.JdbcUtils;
+import org.graduate.utils.MD5utils;
 
 public class StudentDao {
 	
@@ -75,13 +76,14 @@ public class StudentDao {
 		
 		try {
 			conn = JdbcUtils.getConnection();
-			String sql = "update t_student set s_name=?,s_password=?,s_gender=?,s_score=?";
+			String sql = "update t_student set s_name=?,s_password=?,s_gender=?,s_score=? where s_id=?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, student.getName());
 			ps.setString(2, student.getPassword());
 			ps.setString(3, student.getGender());
-			ps.setFloat(3, student.getScore());
+			ps.setFloat(4, student.getScore());
+			ps.setString(5, student.getId());
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -212,7 +214,81 @@ public class StudentDao {
 			JdbcUtils.release(conn, ps, rs);
 		}
 		
+	}
+	
+	/**
+	 * 学生重置密码为随机生成的密码，该密码已加密
+	 * @param id 学号
+	 * @param passtmp 临时生成的随记密码，已被加密
+	 * @return 更新成功返回true，否则返回false
+	 */
+	public boolean resetPass(String id, String passtmp) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "update t_student set s_password=? where s_id=?";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, passtmp);
+			ps.setString(2, id);
+			
+			int result = ps.executeUpdate();
+			if (result == 1) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+		
+	}
+	
+	/**
+	 * 根据id查询出student实体
+	 * @param id 学号
+	 * @return 返回student
+	 */
+	public Student findStudent(String id) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "select * from t_student where s_id=?";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				String sid = rs.getString("s_id");
+				String sname = rs.getString("s_name");
+				String spass = rs.getString("s_password");
+				String sgender = rs.getString("s_gender");
+				float sscore = rs.getFloat("s_score");
+				
+				Student student = new Student();
+				student.setId(sid);
+				student.setName(sname);
+				student.setPassword(spass);
+				student.setGender(sgender.equals("f") ? "女" : "男");
+				student.setScore(sscore);
+				
+				return student;
+			}
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
 		
 		
 		
