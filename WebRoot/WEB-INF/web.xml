@@ -79,6 +79,11 @@
     <servlet-name>StudentService</servlet-name>
     <servlet-class>org.graduate.web.controller.StudentService</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>NoticeService</servlet-name>
+    <servlet-class>org.graduate.web.controller.NoticeService</servlet-class>
+  </servlet>
+
 
 
 
@@ -153,6 +158,10 @@
   <servlet-mapping>
     <servlet-name>StudentService</servlet-name>
     <url-pattern>/servlet/StudentService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoticeService</servlet-name>
+    <url-pattern>/servlet/NoticeService</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     

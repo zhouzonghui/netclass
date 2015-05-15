@@ -96,6 +96,36 @@ public class StudentDao {
 	}
 	
 	/**
+	 * 更新学生密码
+	 * @param id 学号
+	 * @param pass 修改后的密码
+	 */
+	public boolean updatePass(String id, String pass) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "update t_student set s_password=? where s_id=?";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, pass);
+			ps.setString(2, id);
+			
+			
+			int result = ps.executeUpdate();
+			return result == 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+		
+	}
+	
+	/**
 	 * 根据课堂号检索出该课堂上的所有学生
 	 * @param class_id 课堂号
 	 * @return 返回这个课堂上的学生

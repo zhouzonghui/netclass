@@ -45,13 +45,25 @@ public class StudentService extends HttpServlet {
 			//发来的是登录请求
 			String pwd = request.getParameter("pwd");
 			String id = request.getParameter("id");
+			
 			Student student = studentDao.findStudent(id);
-			if (student.getPassword().equals(MD5utils.MD5(pwd))) {
+			if (student != null && student.getPassword().equals(MD5utils.MD5(pwd))) {
 				response.getWriter().write("ok");
 			}else {
 				response.getWriter().write("no");
 			}
+		}else if("modify".equals(type)){
+			//发来的是密码修改请求
+			String newpwd = request.getParameter("newpwd");
+			String id = request.getParameter("id");
 			
+			boolean result = studentDao.updatePass(id, MD5utils.MD5(newpwd));
+			
+			if (result) {
+				response.getWriter().write("ok");
+			}else {
+				response.getWriter().write("no");
+			}
 			
 		}
 	}
