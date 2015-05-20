@@ -83,6 +83,21 @@
     <servlet-name>NoticeService</servlet-name>
     <servlet-class>org.graduate.web.controller.NoticeService</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ListFileService</servlet-name>
+    <servlet-class>org.graduate.web.controller.ListFileService</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FileDownloadService</servlet-name>
+    <servlet-class>org.graduate.web.controller.FileDownloadService</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>QuestionService</servlet-name>
+    <servlet-class>org.graduate.web.controller.QuestionService</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -162,6 +177,18 @@
   <servlet-mapping>
     <servlet-name>NoticeService</servlet-name>
     <url-pattern>/servlet/NoticeService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListFileService</servlet-name>
+    <url-pattern>/servlet/ListFileService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FileDownloadService</servlet-name>
+    <url-pattern>/servlet/FileDownloadService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QuestionService</servlet-name>
+    <url-pattern>/servlet/QuestionService</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     
