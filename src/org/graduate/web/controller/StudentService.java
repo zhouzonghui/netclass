@@ -21,7 +21,7 @@ public class StudentService extends HttpServlet {
 		StudentDao studentDao = new StudentDao();
 		
 		String type = request.getParameter("type");
-		System.out.println(type);
+		
 		
 		if ("reset".equals(type)) {
 			//此时是学生客户端发来的重置密码的请求，随记生成一个密码，先写入数据库，再把这个密码以邮件方式发送给学生
@@ -65,6 +65,11 @@ public class StudentService extends HttpServlet {
 				response.getWriter().write("no");
 			}
 			
+		}else if("getscore".equals(type)) {
+			//发来的是成绩查询请求
+			String id = request.getParameter("id");
+			Student student = studentDao.findStudent(id);
+			response.getWriter().write(student.getScore() + "");
 		}
 	}
 

@@ -102,6 +102,35 @@ public class NoticeDao {
 	}
 	
 	/**
+	 * 获取总记录数
+	 * @return 返回总记录数
+	 */
+	public int getTotalRecord() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "select count(*) from t_notice";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			int count = 0;
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			return count;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+	}
+	
+	/**
 	 * 列出所有通知
 	 * @return 返回所有通知的集合
 	 */
