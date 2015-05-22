@@ -39,6 +39,32 @@ public class QuestionDao {
 	}
 	
 	/**
+	 * 删除一条记录
+	 * @param id
+	 * @return 删除成功返回true
+	 */
+	public boolean delete(int id) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "delete from t_question where q_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			int result = ps.executeUpdate();
+			return result == 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+	}
+	
+	/**
 	 * 分页取数据，取的是所有学生的问题，而不是某一特定学生的问题
 	 * @param start 开始位置
 	 * @param offset 需要取的记录条数
@@ -114,7 +140,7 @@ public class QuestionDao {
 				String title = rs.getString("q_title");
 				String content = rs.getString("q_content");
 				String answer = rs.getString("q_answer");
-				boolean isanswer = rs.getInt("q_isanswer") == 1;
+				boolean isanswer = rs.getInt("q_isanswered") == 1;
 				
 				Question question = new Question();
 				question.setId(q_id);
@@ -130,6 +156,37 @@ public class QuestionDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+	}
+	
+	/**
+	 * 获取某学生的提问的总记录数
+	 * @param id 学号
+	 * @return 返回总记录数
+	 */
+	public int getTotalRecord(String id) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "select count(*) from t_question where q_student_id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			int count = 0;
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			return count;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
 		}finally {
 			JdbcUtils.release(conn, ps, rs);
 		}
