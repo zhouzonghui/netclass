@@ -164,5 +164,46 @@ public class NoticeDao {
 			JdbcUtils.release(conn, ps, rs);
 		}
 	}
+	
+	/**
+	 * 分页使用，获取通知
+	 * @param startindex 从数据库哪个位置开始取
+	 * @param pagesize 页面大小（取多少条记录）
+	 * @return
+	 */
+	public List<Notice> getPageData(int startindex, int pagesize) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Notice> notices = new ArrayList<Notice>();
+		
+		try {
+			conn = JdbcUtils.getConnection();
+				String sql = "select * from t_notice order by n_id desc limit ?,?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, startindex);
+				ps.setInt(2, pagesize);
+				
+				rs = ps.executeQuery();
+				
+			while (rs.next()) {
+				Notice notice = new Notice();
+				
+				notice.setId(rs.getInt("n_id"));
+				notice.setInfo(rs.getString("n_info"));
+				
+				
+				notices.add(notice);
+			}
+			return notices;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			JdbcUtils.release(conn, ps, rs);
+		}
+		
+	}
 		
 }

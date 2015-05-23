@@ -4,8 +4,7 @@
 <html>
   <head>
     
-    <title>通知列表</title>
-  
+    <title>查看留言</title>
 	<meta http-equiv="expires" content="0">   
 	<style type="text/css">
 		td {
@@ -15,22 +14,25 @@
   </head>
   
   <body>
-  <center>
+    <center>
     	<table frame="border" bordercolor="blue" rules="all" width="800px" align="center">
-	    	<thead><font size="5">通知列表</font></thead>
+	    	<thead><font size="5">学生留言</font></thead>
 	    	<tr>
-	    		<td><font color="red"><strong>通知内容</strong></font></td>
-	    		<td><font color="red"><strong>删除通知</strong></font></td>
+	    		<td><font color="red"><strong>详　　情</strong></font></td>
+	    		
 	    	</tr>
 	    	
-	    	<c:forEach var="n" items="${page.list}">
+	    	<c:forEach var="n" items="${page.list }">
 	    		<tr>
-	    			<td>${n.info }</td>
-	    			<td><a href="${pageContext.request.contextPath }/servlet/DeleteNotice?id=${n.id}" target="body" onclick="return confirm('确定删除？');">删除</a></td>
+	    			<td>
+	    				<font color="red">标题：</font><c:out escapeXml="true" value="${n.title }"/><br/>
+	    				<font color="red">内容：</font><c:out escapeXml="true" value="${n.content }"/><br/>
+	    				<font color="red">回复：</font><c:out escapeXml="true" value="${n.answer }"/>
+	    			</td>
+	    			
 	    		</tr>
 	    		
 	    	</c:forEach>
-    	
     	</table>
     	<br/>
     	<%@ include file="/jsp/page.jsp" %>

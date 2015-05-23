@@ -77,8 +77,8 @@
 	    <br/>
 	    <div id="message"><li><a href="#">留言管理</a></li></div>
 	    <div id="m_content" class="content">
-		    <a href="">查看留言</a><br/>
-		    <a href="">留言回复</a>
+		    <a href="${pageContext.request.contextPath }/servlet/SeeAllQuestion" target="body">查看留言</a><br/>
+		    <a href="${pageContext.request.contextPath }/servlet/ReplyQuestion" target="body">留言回复</a>
 	    </div>
 	    <br/>
 	    

@@ -95,6 +95,21 @@
     <servlet-name>QuestionService</servlet-name>
     <servlet-class>org.graduate.web.controller.QuestionService</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SeeAllQuestion</servlet-name>
+    <servlet-class>org.graduate.web.controller.SeeAllQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ReplyQuestion</servlet-name>
+    <servlet-class>org.graduate.web.controller.ReplyQuestion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AnswerQuestion</servlet-name>
+    <servlet-class>org.graduate.web.controller.AnswerQuestion</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -189,6 +204,18 @@
   <servlet-mapping>
     <servlet-name>QuestionService</servlet-name>
     <url-pattern>/servlet/QuestionService</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SeeAllQuestion</servlet-name>
+    <url-pattern>/servlet/SeeAllQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ReplyQuestion</servlet-name>
+    <url-pattern>/servlet/ReplyQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AnswerQuestion</servlet-name>
+    <url-pattern>/servlet/AnswerQuestion</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     
