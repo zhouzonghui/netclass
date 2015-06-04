@@ -36,7 +36,7 @@ public class SendMail extends Thread {
 	private String mPass = "netclass";
 	
 	/**
-	 * 126邮箱服务器的地址
+	 * 新浪邮箱服务器的地址
 	 */
 	private String host = "smtp.sina.com";
 	
